@@ -19,15 +19,25 @@ function GetWorkingHours(empCheck)
     }
 }
 
-let empHrs=0;
-let workingDays=0;
-
-while(empHrs<=MAX_HOURS && workingDays <= WORKING_DAYS)
+function CalculateWage(empHrs)
 {
-    workingDays++;
-    let empCheck = Math.floor(Math.random()*10)%3;
-    empHrs += GetWorkingHours(empCheck);
+    return empHrs*WAGE_PER_HOURS;
 }
-let TotalWorkingDays=workingDays-1;
-let empWage= empHrs * WAGE_PER_HOURS;
-console.log("Total Days : "+ TotalWorkingDays + "\nTotal Hours : " + empHrs + "\nEmployee Wage: " + empWage);
+
+let totalEmpHrs=0;
+let totalWorkingDays=0;
+let empDailyWageArr=new Array();
+
+while(totalEmpHrs<=MAX_HOURS && totalWorkingDays <= WORKING_DAYS)
+{
+    totalWorkingDays++;
+    let empCheck = Math.floor(Math.random()*10)%3;
+    let empHrs = GetWorkingHours(empCheck);
+    totalEmpHrs+=empHrs;
+    empDailyWageArr.push(CalculateWage(empHrs));
+}
+
+let empWage= CalculateWage(totalEmpHrs);
+console.log("Total Days : "+ totalWorkingDays + 
+"\nTotal Hours : " + totalEmpHrs + 
+"\nEmployee Wage: " + empWage);
