@@ -27,6 +27,7 @@ function CalculateWage(empHrs)
 let totalEmpHrs=0;
 let totalWorkingDays=0;
 let empDailyWageArr=new Array();
+let empDailyWageMap=new Map();
 
 while(totalEmpHrs<=MAX_HOURS && totalWorkingDays <= WORKING_DAYS)
 {
@@ -35,12 +36,14 @@ while(totalEmpHrs<=MAX_HOURS && totalWorkingDays <= WORKING_DAYS)
     let empHrs = GetWorkingHours(empCheck);
     totalEmpHrs+=empHrs;
     empDailyWageArr.push(CalculateWage(empHrs));
+    empDailyWageMap.set(totalWorkingDays, CalculateWage(empHrs));
 }
 
 let empWage= CalculateWage(totalEmpHrs);
 console.log("Total Days : "+ totalWorkingDays + 
 "\nTotal Hours : " + totalEmpHrs + 
 "\nEmployee Wage: " + empWage);
+console.log(empDailyWageMap);
 
 //Array Helper Functions
 //UC 7A -Calc total Wage Using Array forEach or reduce method
